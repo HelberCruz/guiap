@@ -25,3 +25,5 @@ jobs:
 
     - name: Compilar projeto
       run: mvn -B package --file pom.xml
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
