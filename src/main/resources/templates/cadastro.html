@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - MeuGuia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+</head>
+<body>
+    <div class="desktop-container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>MeuGuia</span>
+            </div>
+            <p>Crie sua conta para começar a usar</p>
+        </header>
+        
+        <div class="form-container">
+            <!-- Exibir mensagens de erro -->
+            <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+            
+            <form th:action="@{/cadastro}" method="post" th:object="${usuario}">
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{nivelAcesso}">
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Digite seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite seu e-mail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Digite seu CPF" required maxlength="14" oninput="formatarCPF(this)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Crie uma senha" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmarSenha">Confirmar Senha</label>
+                    <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Cadastrar</button>
+                
+                <div class="divider">
+                    <span>ou</span>
+                </div>
+                
+                <a th:href="@{/oauth2/authorization/google}" class="google-login">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo">
+                    Cadastrar com Google
+                </a>
+                
+                <div class="spacer"></div>
+                
+                <a th:href="@{/login}" class="btn-secondary">Voltar para Login</a>
+            </form>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; 2025 MeuGuia - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Função para formatar CPF
+        function formatarCPF(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            
+            if (valor.length > 11) {
+                valor = valor.slice(0, 11);
+            }
+            
+            // Salvar o valor sem formatação em um campo hidden
+            document.getElementById('cpfLimpo').value = valor;
+            
+            if (valor.length > 9) {
+                valor = valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            } else if (valor.length > 6) {
+                valor = valor.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+            } else if (valor.length > 3) {
+                valor = valor.replace(/(\d{3})(\d+)/, '$1.$2');
+            }
+            
+            campo.value = valor;
+        }
+        
+        // Validação de confirmação de senha
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+            
+            if (senha !== confirmarSenha) {
+                e.preventDefault();
+                alert('As senhas não coincidem!');
+            }
+        });
+    </script>
+</body>
+</html>

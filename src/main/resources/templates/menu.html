@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal - MeuGuia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="user-info">
+            <div class="user-details">
+                <div class="user-avatar" style="position: relative;">
+                    <!-- Foto do perfil ou ícone padrão -->
+                    <div th:if="${usuario.fotoPerfil}" class="avatar-container">
+                        <img th:src="@{'/uploads/' + ${usuario.fotoPerfil}}" alt="Foto de perfil"
+                            class="avatar-image-sidebar">
+                        <!-- Ícone de edição que aparece no modo edição -->
+                        <i class="fas fa-pencil-alt edit-avatar-icon" onclick="iniciarUploadFoto()"
+                            style="display: none;"></i>
+                    </div>
+                    <div th:unless="${usuario.fotoPerfil}" class="avatar-container">
+                        <i class="fas fa-user-circle default-avatar-sidebar"></i>
+                        <!-- Ícone de edição que aparece no modo edição -->
+                        <i class="fas fa-pencil-alt edit-avatar-icon" onclick="iniciarUploadFoto()"
+                            style="display: none;"></i>
+                    </div>
+                    <!-- Input hidden para upload -->
+                    <input type="file" id="fotoPerfilInput" accept="image/*" style="display: none;"
+                        onchange="uploadFotoPerfil(this.files[0])">
+                </div>
+                <div class="user-text">
+                    <h1 class="user-name" th:text="${primeiroNome}">Usuario</h1>
+                    <div class="user-status">
+                        <span class="status-indicator"></span>
+                        <span id="statusText">Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-actions">
+                <div class="icon-btn">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="section-title">Informações</h2>
+            <ul class="menu-items">
+                <li>
+                    <a class="menu-item" th:classappend="${activeSection == 'linha-do-tempo'} ? 'active'"
+                        onclick="showSection('linha-do-tempo')">
+                        <i class="fas fa-stream"></i>
+                        <span data-i18n="timeline">Linha do tempo</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-item" th:classappend="${activeSection == 'salvos'} ? 'active'"
+                        onclick="showSection('salvos')">
+                        <i class="fas fa-bookmark"></i>
+                        <span data-i18n="saved">Salvos</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-item" th:classappend="${activeSection == 'informacoes'} ? 'active'"
+                        onclick="showSection('informacoes')">
+                        <i class="fas fa-user-circle"></i>
+                        <span data-i18n="profile">Perfil</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="menu-section">
+            <h2 class="section-title" data-i18n="help">Ajuda</h2>
+            <ul class="menu-items">
+                <li>
+                    <a class="menu-item" th:classappend="${activeSection == 'duvidas'} ? 'active'"
+                        onclick="showSection('duvidas')">
+                        <i class="fas fa-question-circle"></i>
+                        <span data-i18n="faq">Dúvidas</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="menu-item" th:classappend="${activeSection == 'idioma'} ? 'active'"
+                        onclick="showSection('idioma')">
+                        <i class="fas fa-globe"></i>
+                        <span data-i18n="language">Idioma</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section" style="margin-top: auto;">
+            <div class="divider"></div>
+            <ul class="menu-items">
+                <li>
+                    <a class="menu-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span data-i18n="logout">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-title-section">
+                <!-- Botão de Voltar para Tela Inicial -->
+                <a th:href="@{/inicial}" class="back-button" title="Voltar para Tela Inicial">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="page-title" data-i18n="backToHome">Voltar a Pagina inicial</h1>
+            </div>
+            <div class="header-controls">
+                <p class="page-title" data-i18n="theme">tema</p>
+                <div class="theme-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Seção de Salvos -->
+        <section id="salvos" class="content-area" th:classappend="${activeSection == 'salvos'} ? 'active'">
+            <h2 class="content-title" data-i18n="savedItems">Itens Salvos</h2>
+            <p data-i18n="savedDescription">Gerencie todos os itens que você salvou para consultas futuras.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3 data-i18n="savedRoutes">Roteiros Salvos</h3>
+                    <p data-i18n="savedRoutesDesc">Você tem 5 roteiros salvos. Seus últimos salvamentos foram há 2 dias.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 data-i18n="favoritePlaces">Locais Favoritos</h3>
+                    <p data-i18n="favoritePlacesDesc">12 locais marcados como favoritos para visitas futuras.</p>
+                </div>
+                <div class="card">
+                    <h3 data-i18n="restaurants">Restaurantes</h3>
+                    <p data-i18n="restaurantsDesc">8 restaurantes salvos para experimentar durante suas viagens.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Linha do Tempo -->
+        <section id="linha-do-tempo" class="content-area"
+            th:classappend="${activeSection == 'linha-do-tempo'} ? 'active'">
+            <h2 class="content-title" data-i18n="timeline">Linha do Tempo</h2>
+            <p data-i18n="timelineDescription">Acompanhe suas atividades e eventos recentes em ordem cronológica.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3 data-i18n="recentActivity">Atividade Recente</h3>
+                    <p data-i18n="recentActivityDesc">Você fez login 5 vezes na última semana. Sua última atividade foi
+                        hoje às 14:32.</p>
+                </div>
+                <div class="card">
+                    <h3 data-i18n="travelHistory">Histórico de Viagens</h3>
+                    <p data-i18n="travelHistoryDesc">Revise todos os destinos que você já visitou ou planejou.</p>
+                </div>
+                <div class="card">
+                    <h3 data-i18n="upcomingEvents">Próximos Eventos</h3>
+                    <p data-i18n="upcomingEventsDesc">Visualize seus planos futuros e atividades agendadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Informações do Usuário -->
+        <section id="informacoes" class="content-area" th:classappend="${activeSection == 'informacoes'} ? 'active'">
+            <h2 class="content-title" data-i18n="yourInformation">Suas Informações</h2>
+            <div class="profile-container">
+                <!-- Cabeçalho do Perfil -->
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <div th:if="${usuario.fotoPerfil}" class="avatar-container">
+                            <img th:src="@{'/uploads/' + ${usuario.fotoPerfil}}" alt="Foto de perfil"
+                                class="avatar-image">
+                            <i class="fas fa-pencil-alt edit-profile-avatar-icon" onclick="iniciarUploadFoto()"></i>
+                        </div>
+                        <div th:unless="${usuario.fotoPerfil}" class="avatar-container">
+                            <i class="fas fa-user-circle default-avatar"></i>
+                            <i class="fas fa-pencil-alt edit-profile-avatar-icon" onclick="iniciarUploadFoto()"></i>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h3 th:text="${usuario.nome}">Nome do Usuário</h3>
+                        <p class="profile-email" th:text="${usuario.email}">email@exemplo.com</p>
+                        <button class="btn-edit-profile" onclick="toggleEdicaoPerfil()">
+                            <i class="fas fa-edit"></i>
+                            <span id="textoBotaoEditar" data-i18n="editProfile">Editar Perfil</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Informações Pessoais - Editáveis -->
+                <div class="info-section">
+                    <h4 class="info-section-title">
+                        <i class="fas fa-id-card"></i> <span data-i18n="personalInfo">Informações Pessoais</span>
+                    </h4>
+                    <div class="info-grid">
+                        <!-- Nome - Editável -->
+                        <div class="info-row">
+                            <div class="info-label" data-i18n="name">Nome</div>
+                            <div class="info-value">
+                                <span id="nomeDisplay" th:text="${usuario.nome}">Nome do Usuário</span>
+                                <input type="text" id="nomeInput" class="edit-input" th:value="${usuario.nome}"
+                                    style="display: none;">
+                                <i class="fas fa-pencil-alt edit-icon" onclick="editarCampo('nome')"
+                                    style="display: none;"></i>
+                            </div>
+                        </div>
+
+                        <!-- CPF - Editável -->
+                        <div class="info-row">
+                            <div class="info-label" data-i18n="cpf">CPF</div>
+                            <div class="info-value">
+                                <span id="cpfDisplay" th:text="${usuario.cpf} ?: 'Não informado'">000.000.000-00</span>
+                                <input type="text" id="cpfInput" class="edit-input" th:value="${usuario.cpf}"
+                                    style="display: none;">
+                                <i class="fas fa-pencil-alt edit-icon" onclick="editarCampo('cpf')"
+                                    style="display: none;"></i>
+                            </div>
+                        </div>
+
+                        <!-- Telefone - Editável -->
+                        <div class="info-row">
+                            <div class="info-label" data-i18n="phone">Telefone</div>
+                            <div class="info-value">
+                                <span id="telefoneDisplay" th:text="${usuario.telefone} ?: 'Não informado'">(11)
+                                    99999-9999</span>
+                                <input type="text" id="telefoneInput" class="edit-input" th:value="${usuario.telefone}"
+                                    style="display: none;">
+                                <i class="fas fa-pencil-alt edit-icon" onclick="editarCampo('telefone')"
+                                    style="display: none;"></i>
+                            </div>
+                        </div>
+
+                        <!-- Campos apenas para ADMIN -->
+                        <div class="info-row" th:if="${usuario.nivelAcesso == 'ADMIN'}">
+                            <div class="info-label" data-i18n="userId">ID do Usuário</div>
+                            <div class="info-value" th:text="${usuario.id}">#001</div>
+                        </div>
+                        <div class="info-row" th:if="${usuario.nivelAcesso == 'ADMIN'}">
+                            <div class="info-label" data-i18n="accessLevel">Nível de Acesso</div>
+                            <div class="info-value" th:text="${usuario.nivelAcesso}">ADMIN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações Rápidas -->
+                <div class="profile-actions">
+                    <button class="btn-action" onclick="alterarSenha()">
+                        <i class="fas fa-key"></i> <span data-i18n="changePassword">Alterar Senha</span>
+                    </button>
+                    <button class="btn-action" onclick="alterarFoto()">
+                        <i class="fas fa-camera"></i> <span data-i18n="changePhoto">Alterar Foto</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Dúvidas (antiga Configurações) -->
+        <section id="duvidas" class="content-area" th:classappend="${activeSection == 'duvidas'} ? 'active'">
+            <h2 class="content-title" data-i18n="faq">Dúvidas Frequentes</h2>
+            <p data-i18n="faqDescription">Encontre respostas para as perguntas mais comuns sobre o uso do sistema.</p>
+
+            <div class="faq-section">
+                <!-- Card para "Como funciona para criar seu roteiro?" -->
+                <div class="faq-card">
+                    <div class="faq-card-header" onclick="toggleFaqCard('roteiro-automatico')">
+                        <div class="faq-card-title">
+                            <i class="fas fa-robot"></i>
+                            <h3 data-i18n="howItWorks">Como funciona para criar seu roteiro?</h3>
+                        </div>
+                        <div class="faq-card-arrow">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-card-content" id="roteiro-automatico">
+                        <p class="faq-subtitle" data-i18n="followSteps">Siga estes passos simples para criar seu roteiro
+                            personalizado:</p>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <h4 class="step-title" data-i18n="step1Title">Após o login</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step1Desc">Acesse sua conta no sistema para começar a
+                                criar seu roteiro.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <h4 class="step-title" data-i18n="step2Title">Informe o endereço inicial</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step2Desc">Digite o endereço de onde deseja ser o
+                                ponto inicial de seu roteiro.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <h4 class="step-title" data-i18n="step3Title">Selecione o tema</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step3Desc">Escolha o tema do roteiro: gastronomia,
+                                história, festas, paisagens, etc.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">4</div>
+                                <h4 class="step-title" data-i18n="step4Title">Gere seu roteiro</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step4Desc">Clique no botão "Gerar meu roteiro" para
+                                criar seu itinerário personalizado.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">5</div>
+                                <h4 class="step-title" data-i18n="step5Title">Confirme o roteiro</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step5Desc">Verifique se o roteiro está de acordo com
+                                o que queria e clique em "Confirmar roteiro".</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">6</div>
+                                <h4 class="step-title" data-i18n="step6Title">Divirta-se!</h4>
+                            </div>
+                            <p class="step-description" data-i18n="step6Desc">Siga os pontos propostos pelo roteiro e
+                                aproveite sua experiência!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card para "Como criar o guia manualmente" -->
+                <div class="faq-card">
+                    <div class="faq-card-header" onclick="toggleFaqCard('guia-manual')">
+                        <div class="faq-card-title">
+                            <i class="fas fa-edit"></i>
+                            <h3 data-i18n="manualGuide">Como criar o guia manualmente</h3>
+                        </div>
+                        <div class="faq-card-arrow">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-card-content" id="guia-manual">
+                        <p class="faq-subtitle" data-i18n="manualGuideDesc">Crie seu próprio roteiro personalizado
+                            seguindo estes passos:</p>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <h4 class="step-title" data-i18n="manualStep1Title">Acesse o criador manual</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep1Desc">Na página principal, clique em
+                                "Criar Roteiro Manual" para iniciar.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <h4 class="step-title" data-i18n="manualStep2Title">Defina o título e descrição</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep2Desc">Dê um nome para seu roteiro e
+                                adicione uma descrição sobre o que os usuários podem esperar.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">3</div>
+                                <h4 class="step-title" data-i18n="manualStep3Title">Adicione locais</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep3Desc">Pesquise e adicione os locais que
+                                deseja incluir no roteiro. Você pode organizá-los na ordem preferida.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">4</div>
+                                <h4 class="step-title" data-i18n="manualStep4Title">Configure detalhes</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep4Desc">Defina o tempo estimado em cada
+                                local, adicione dicas e informações relevantes.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">5</div>
+                                <h4 class="step-title" data-i18n="manualStep5Title">Adicione imagens</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep5Desc">Inclua fotos dos locais para tornar
+                                o roteiro mais atraente e informativo.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-header">
+                                <div class="step-number">6</div>
+                                <h4 class="step-title" data-i18n="manualStep6Title">Salve e publique</h4>
+                            </div>
+                            <p class="step-description" data-i18n="manualStep6Desc">Revise seu roteiro e clique em
+                                "Salvar" ou "Publicar" para disponibilizá-lo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Idioma -->
+        <section id="idioma" class="content-area" th:classappend="${activeSection == 'idioma'} ? 'active'">
+            <h2 class="content-title" data-i18n="language">Idioma</h2>
+            <p data-i18n="languageDescription">Selecione e configure o idioma de sua preferência.</p>
+
+            <div class="language-options">
+                <div class="language-card active" onclick="changeLanguage('pt-BR')">
+                    <div class="language-flag">🇧🇷</div>
+                    <div class="language-name" data-i18n="portuguese">Português (Brasil)</div>
+                    <div class="language-status" data-i18n="currentLanguage">Idioma atual</div>
+                </div>
+
+                <div class="language-card" onclick="changeLanguage('en')">
+                    <div class="language-flag">🇺🇸</div>
+                    <div class="language-name" data-i18n="english">English</div>
+                    <div class="language-status" data-i18n="clickToChange">Clique para alterar</div>
+                </div>
+
+                <div class="language-card" onclick="changeLanguage('es')">
+                    <div class="language-flag">🇪🇸</div>
+                    <div class="language-name" data-i18n="spanish">Español</div>
+                    <div class="language-status" data-i18n="clickToChange">Clique para alterar</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p data-i18n="copyright">© 2025 Sistema de Dashboard. Todos os direitos reservados.</p>
+        </div>
+    </main>
+    <!-- NO FINAL DO BODY do menu.html -->
+
+    <!-- PRIMEIRO: Carrega as traduções (translations.js) -->
+    <script th:src="@{/js/shared/translations.js}"></script>
+    
+    <!-- SEGUNDO: Carrega o gerenciador de idiomas (que depende de translations) -->
+    <script th:src="@{/js/shared/languageManager.js}"></script>
+    
+    <!-- TERCEIRO: Outros utilitários -->
+    <script th:src="@{/js/shared/modal.js}"></script>
+    
+    <!-- QUARTO: Módulos específicos do menu -->
+    <script th:src="@{/js/menu/menuNavigation.js}"></script>
+    <script th:src="@{/js/menu/menuTheme.js}"></script>
+    <script th:src="@{/js/menu/menuProfile.js}"></script>
+    <script th:src="@{/js/menu/menuUpload.js}"></script>
+    <script th:src="@{/js/menu/menuFAQ.js}"></script>
+    
+    <!-- QUINTO: Main do menu (depende de tudo) -->
+    <script th:src="@{/js/menu/menuMain.js}"></script>
+</body>
+</html>

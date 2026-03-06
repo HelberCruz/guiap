@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeuGuia - Mapa do Roteiro</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet CSS (GRÁTIS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Leaflet Routing Machine CSS (para rotas) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+    <!-- Seu CSS -->
+    <link rel="stylesheet" th:href="@{/css/mapa.css}">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <button class="back-btn" onclick="window.location.href='/inicial'">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <h1><i class="fas fa-route"></i> Roteiro no Mapa</h1>
+                <p id="route-title">Carregando roteiro...</p>
+            </div>
+
+            <div class="sidebar-content">
+                <!-- Informações do Roteiro -->
+                <div class="route-info-card">
+                    <h3><i class="fas fa-info-circle"></i> Informações</h3>
+                    <div id="basic-info">
+                        <p><strong>Tema:</strong> <span id="info-theme">-</span></p>
+                        <p><strong>Localização:</strong> <span id="info-location">-</span></p>
+                        <p><strong>Gerado em:</strong> <span id="info-date">-</span></p>
+                    </div>
+                </div>
+
+                <!-- Estatísticas da Rota -->
+                <div class="route-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-route"></i>
+                        <span class="stat-value" id="stat-distance">0 km</span>
+                        <span class="stat-label">Distância</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-value" id="stat-time">0 min</span>
+                        <span class="stat-label">Tempo</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="stat-value" id="stat-stops">0</span>
+                        <span class="stat-label">Paradas</span>
+                    </div>
+                </div>
+
+                <!-- Lista de Locais -->
+                <div class="locations-section">
+                    <h3><i class="fas fa-list-ol"></i> Itinerário</h3>
+                    <div class="locations-list" id="locations-list">
+                        <!-- Locais serão carregados aqui -->
+                        <div class="loading-locations">
+                            <i class="fas fa-spinner fa-spin"></i> Carregando locais...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações -->
+                <div class="route-actions">
+                    <button class="btn-primary" id="btn-start-navigation">
+                        <i class="fas fa-directions"></i> Iniciar Navegação
+                    </button>
+                    <button class="btn-secondary" id="btn-print-route">
+                        <i class="fas fa-print"></i> Imprimir Rota
+                    </button>
+                    <button class="btn-secondary" id="btn-recalculate">
+                        <i class="fas fa-sync-alt"></i> Recalcular Rota
+                    </button>
+                    <!-- Na seção de ações, adicione: -->
+                    <button class="btn-secondary" id="btn-debug-coords" onclick="debugCoordenadas()">
+                        <i class="fas fa-bug"></i> Debug Coordenadas
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mapa Principal -->
+        <main class="map-container">
+            <div id="map"></div>
+
+            <!-- Controles do Mapa -->
+            <div class="map-controls">
+                <button class="map-btn" id="btn-zoom-in" title="Aproximar">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="map-btn" id="btn-zoom-out" title="Afastar">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="map-btn" id="btn-my-location" title="Minha Localização">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+                <button class="map-btn" id="btn-fit-bounds" title="Ajustar ao roteiro">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <button class="map-btn" id="btn-show-route" title="Mostrar Rota">
+                    <i class="fas fa-route"></i>
+                </button>
+            </div>
+
+            <!-- Painel de Detalhes (aparece ao clicar em um marcador) -->
+            <div class="location-details-panel" id="location-details" style="display: none;">
+                <div class="panel-header">
+                    <h3 id="detail-name">Nome do Local</h3>
+                    <button class="close-btn" onclick="hideLocationDetails()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="panel-content">
+                    <p id="detail-description">Descrição...</p>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="detail-address">Endereço...</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="detail-time">Tempo sugerido...</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span id="detail-cost">Custo...</span>
+                    </div>
+                    <div class="detail-tip" id="detail-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Dica:</strong> <span id="detail-tip-text">Dica...</span>
+                    </div>
+                </div>
+                <div class="panel-actions">
+                    <button class="btn-small" onclick="openDirections()">
+                        <i class="fas fa-directions"></i> Como Chegar
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <!-- Leaflet (GRÁTIS) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Leaflet Routing Machine (GRÁTIS) -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+    <!-- Seus scripts -->
+    <script th:src="@{/js/shared/utils.js}"></script>
+    <script th:src="@{/js/mapa/mapRouter.js}"></script>
+    <!-- Adicione isto ANTES do main.js -->
+    <script th:src="@{/js/mapa/main.js}"></script>
+
+    <!-- NÃO COLOQUE MAIS NADA AQUI - já está tudo nos arquivos .js -->
+</body>
+
+</html>
+</body>
+
+</html>

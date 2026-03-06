@@ -1,0 +1,125 @@
+/* ESTILOS DO MENU LATERAL */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(to bottom, #3a7bd5, #00d2ff);
+            z-index: 1000;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            color: white;
+        }
+        
+        .sidebar-overlay.active {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: #3a7bd5;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .user-status {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            margin-top: 4px;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            margin-right: 8px;
+        }
+        
+        .menu-items {
+            list-style: none;
+            margin-top: 24px;
+        }
+        
+        .menu-item {
+            padding: 14px 0;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-item:hover {
+            padding-left: 8px;
+        }
+        
+        .menu-item i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .menu-section {
+            margin-bottom: 24px;
+        }
+        
+        .section-title-menu {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        
+        .overlay-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .overlay-background.active {
+            opacity: 1;
+            visibility: visible;
+        }

@@ -1,0 +1,758 @@
+{
+  "itapetininga": {
+    "gastronomia": [
+      {
+        "nome": "Churrascaria e Pizzaria Toca do Tatu",
+        "descricao": "Restaurante famoso pelo rodízio de carnes e pizzas, ambiente familiar.",
+        "tipo": "churrascaria",
+        "endereco": "Av. Comendador Soares, 111 - Centro, Itapetininga - SP",
+        "latitude": -23.5917,
+        "longitude": -48.0522
+      },
+      {
+        "nome": "Pizzaria Fornalha",
+        "descricao": "Pizzaria tradicional com forno a lenha e ampla variedade de sabores.",
+        "tipo": "pizzaria",
+        "endereco": "R. Quinze de Novembro, 105 - Centro, Itapetininga - SP",
+        "latitude": -23.5892,
+        "longitude": -48.0488
+      },
+      {
+        "nome": "Restaurante Dona Maria",
+        "descricao": "Culinária caseira mineira em ambiente aconchegante.",
+        "tipo": "restaurante",
+        "endereco": "R. João Pessoa, 78 - Centro, Itapetininga - SP",
+        "latitude": -23.5885,
+        "longitude": -48.0493
+      },
+      {
+        "nome": "Padaria Real",
+        "descricao": "Padaria tradicional com pães frescos e salgados famosos na cidade.",
+        "tipo": "padaria",
+        "endereco": "Av. Tiradentes, 456 - Centro, Itapetininga - SP",
+        "latitude": -23.5901,
+        "longitude": -48.0510
+      },
+      {
+        "nome": "Sorveteria Ki Sabor",
+        "descricao": "Sorveteria artesanal com sabores regionais e espaço infantil.",
+        "tipo": "sorveteria",
+        "endereco": "R. João de Barro, 321 - Vila Rio Branco, Itapetininga - SP",
+        "latitude": -23.5943,
+        "longitude": -48.0472
+      },
+      {
+        "nome": "Lanchonete Big Lanche",
+        "descricao": "Lanchonete famosa pelos lanches gigantes e hambúrgueres artesanais.",
+        "tipo": "lanchonete",
+        "endereco": "Av. João Alfredo, 789 - Vila Heitor, Itapetininga - SP",
+        "latitude": -23.5967,
+        "longitude": -48.0458
+      },
+      {
+        "nome": "Cafeteria do Parque",
+        "descricao": "Café especial com vista para o Parque Júlio Mesquita.",
+        "tipo": "cafeteria",
+        "endereco": "R. José Bonifácio, 234 - Centro, Itapetininga - SP",
+        "latitude": -23.5876,
+        "longitude": -48.0479
+      },
+      {
+        "nome": "Bar do Zé",
+        "descricao": "Bar tradicional com petiscos e música ao vivo nos fins de semana.",
+        "tipo": "bar",
+        "endereco": "R. da Liberdade, 567 - Centro, Itapetininga - SP",
+        "latitude": -23.5923,
+        "longitude": -48.0501
+      },
+      {
+        "nome": "Confeitaria Doce Mel",
+        "descricao": "Confeitaria especializada em doces finos e bolos decorados.",
+        "tipo": "confeitaria",
+        "endereco": "R. Marechal Deodoro, 890 - Centro, Itapetininga - SP",
+        "latitude": -23.5898,
+        "longitude": -48.0495
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Museu Histórico Pedro Laragnoit",
+        "descricao": "Museu que preserva a história de Itapetininga com acervo de documentos e artefatos.",
+        "tipo": "museu",
+        "endereco": "R. Quinze de Novembro, 115 - Centro, Itapetininga - SP",
+        "latitude": -23.5890,
+        "longitude": -48.0485
+      },
+      {
+        "nome": "Igreja Matriz Nossa Senhora dos Prazeres",
+        "descricao": "Igreja centenária construída em 1770, marco histórico da cidade.",
+        "tipo": "igreja",
+        "endereco": "Praça da Matriz, s/n - Centro, Itapetininga - SP",
+        "latitude": -23.5883,
+        "longitude": -48.0480
+      },
+      {
+        "nome": "Estação Ferroviária de Itapetininga",
+        "descricao": "Estação histórica de 1880 que impulsionou o desenvolvimento da região.",
+        "tipo": "estacao_ferroviaria",
+        "endereco": "Av. Tiradentes, 800 - Centro, Itapetininga - SP",
+        "latitude": -23.5905,
+        "longitude": -48.0515
+      },
+      {
+        "nome": "Solar do Barão de Itapetininga",
+        "descricao": "Sobrado histórico do século XIX que pertenceu ao Barão de Itapetininga.",
+        "tipo": "sobrado_historico",
+        "endereco": "R. São Bento, 55 - Centro, Itapetininga - SP",
+        "latitude": -23.5878,
+        "longitude": -48.0492
+      },
+      {
+        "nome": "Praça da Bandeira",
+        "descricao": "Praça histórica com coreto, fonte e árvores centenárias.",
+        "tipo": "praca_historica",
+        "endereco": "Praça da Bandeira - Centro, Itapetininga - SP",
+        "latitude": -23.5910,
+        "longitude": -48.0495
+      },
+      {
+        "nome": "Cemitério dos Escravos",
+        "descricao": "Sítio histórico que preserva a memória da população escravizada da região.",
+        "tipo": "sitio_historico",
+        "endereco": "R. dos Escravos, s/n - Vila Rio Branco, Itapetininga - SP",
+        "latitude": -23.5950,
+        "longitude": -48.0460
+      },
+      {
+        "nome": "Antigo Fórum de Itapetininga",
+        "descricao": "Edifício histórico que abrigou o fórum da cidade por décadas.",
+        "tipo": "edificio_historico",
+        "endereco": "R. João Pessoa, 100 - Centro, Itapetininga - SP",
+        "latitude": -23.5887,
+        "longitude": -48.0490
+      },
+      {
+        "nome": "Capela de São Benedito",
+        "descricao": "Capela histórica construída pela comunidade negra no século XIX.",
+        "tipo": "capela",
+        "endereco": "R. São Benedito, 200 - Vila Rio Branco, Itapetininga - SP",
+        "latitude": -23.5945,
+        "longitude": -48.0465
+      },
+      {
+        "nome": "Museu de Arte Sacra",
+        "descricao": "Acervo de arte sacra com peças dos séculos XVIII e XIX.",
+        "tipo": "museu_arte_sacra",
+        "endereco": "R. do Rosário, 75 - Centro, Itapetininga - SP",
+        "latitude": -23.5895,
+        "longitude": -48.0475
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Parque Júlio Mesquita",
+        "descricao": "Principal parque urbano com lago, pedalinhos, pista de caminhada e área de piquenique.",
+        "tipo": "parque",
+        "endereco": "Av. Tiradentes, s/n - Centro, Itapetininga - SP",
+        "latitude": -23.5870,
+        "longitude": -48.0470
+      },
+      {
+        "nome": "Represa de Itapetininga",
+        "descricao": "Grande represa ideal para pesca, caminhadas e contemplação do pôr do sol.",
+        "tipo": "represa",
+        "endereco": "Estrada da Represa, km 5 - Zona Rural, Itapetininga - SP",
+        "latitude": -23.5800,
+        "longitude": -48.0400
+      },
+      {
+        "nome": "Morro do Cruzeiro",
+        "descricao": "Ponto mais alto da cidade com vista panorâmica e cruz iluminada.",
+        "tipo": "mirante",
+        "endereco": "Morro do Cruzeiro - Vila Rio Branco, Itapetininga - SP",
+        "latitude": -23.6000,
+        "longitude": -48.0450
+      },
+      {
+        "nome": "Cachoeira do Saltinho",
+        "descricao": "Cachoeira com piscina natural, ideal para banho e lazer.",
+        "tipo": "cachoeira",
+        "endereco": "Estrada do Saltinho, km 12 - Zona Rural, Itapetininga - SP",
+        "latitude": -23.5700,
+        "longitude": -48.0300
+      },
+      {
+        "nome": "Horto Florestal",
+        "descricao": "Área de preservação com trilhas, viveiro de mudas e mata nativa.",
+        "tipo": "horto_florestal",
+        "endereco": "Estrada do Horto, km 3 - Zona Rural, Itapetininga - SP",
+        "latitude": -23.5950,
+        "longitude": -48.0400
+      },
+      {
+        "nome": "Lagoa dos Patos",
+        "descricao": "Lagoa natural com população de patos silvestres e área para caminhada.",
+        "tipo": "lagoa",
+        "endereco": "Bairro dos Patos - Zona Oeste, Itapetininga - SP",
+        "latitude": -23.5920,
+        "longitude": -48.0550
+      },
+      {
+        "nome": "Sítio do Seu João",
+        "descricao": "Sítio com paisagem rural, pomar e área para recreação.",
+        "tipo": "sitio_rural",
+        "endereco": "Estrada do Sítio, km 8 - Zona Rural, Itapetininga - SP",
+        "latitude": -23.5850,
+        "longitude": -48.0350
+      },
+      {
+        "nome": "Vista do Aeroporto",
+        "descricao": "Área próxima ao aeroporto com vista desimpedida do pôr do sol.",
+        "tipo": "ponto_de_vista",
+        "endereco": "Av. do Aeroporto, 1000 - Distrito Industrial, Itapetininga - SP",
+        "latitude": -23.6050,
+        "longitude": -48.0600
+      },
+      {
+        "nome": "Bosque dos Eucaliptos",
+        "descricao": "Bosque com árvores centenárias e trilha para caminhada ecológica.",
+        "tipo": "bosque",
+        "endereco": "R. dos Eucaliptos, s/n - Vila Heitor, Itapetininga - SP",
+        "latitude": -23.5980,
+        "longitude": -48.0430
+      }
+    ]
+  },
+  "são paulo": {
+    "gastronomia": [
+      {
+        "nome": "Mercado Municipal de São Paulo",
+        "descricao": "Mercado histórico com arquitetura impressionante e diversas barracas de produtos típicos, frios, especiarias e frutas exóticas.",
+        "tipo": "mercado",
+        "endereco": "R. da Cantareira, 306 - Centro Histórico de São Paulo, São Paulo - SP",
+        "latitude": -23.5425,
+        "longitude": -46.6308
+      },
+      {
+        "nome": "Restaurante Figueira Rubaiyat",
+        "descricao": "Restaurante sofisticado sob uma figueira centenária, famoso pelas carnes premium.",
+        "tipo": "restaurante",
+        "endereco": "R. Haddock Lobo, 1738 - Jardins, São Paulo - SP",
+        "latitude": -23.5622,
+        "longitude": -46.6650
+      },
+      {
+        "nome": "Bar do Mané",
+        "descricao": "Bar tradicional da Vila Madalena com petiscos famosos e cerveja artesanal.",
+        "tipo": "bar",
+        "endereco": "R. Aspicuelta, 463 - Vila Madalena, São Paulo - SP",
+        "latitude": -23.5550,
+        "longitude": -46.6910
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Museu do Ipiranga",
+        "descricao": "Museu histórico localizado no Parque da Independência, com acervo sobre a história do Brasil.",
+        "tipo": "museu",
+        "endereco": "Parque da Independência, s/n - Ipiranga, São Paulo - SP",
+        "latitude": -23.5856,
+        "longitude": -46.6094
+      },
+      {
+        "nome": "Pátio do Colégio",
+        "descricao": "Marco zero da cidade de São Paulo, local da primeira construção da cidade em 1554.",
+        "tipo": "marco_historico",
+        "endereco": "Praça Pátio do Colégio, 2 - Centro, São Paulo - SP",
+        "latitude": -23.5500,
+        "longitude": -46.6330
+      },
+      {
+        "nome": "Mosteiro de São Bento",
+        "descricao": "Mosteiro histórico fundado em 1598, com arquitetura impressionante e missas cantadas.",
+        "tipo": "mosteiro",
+        "endereco": "Largo de São Bento, s/n - Centro, São Paulo - SP",
+        "latitude": -23.5445,
+        "longitude": -46.6355
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Parque Ibirapuera",
+        "descricao": "Principal parque urbano de São Paulo, com lagos, ciclovias, museus e amplas áreas verdes.",
+        "tipo": "parque",
+        "endereco": "Av. Pedro Álvares Cabral - Vila Mariana, São Paulo - SP",
+        "latitude": -23.5874,
+        "longitude": -46.6576
+      },
+      {
+        "nome": "Mirante do SESC Paulista",
+        "descricao": "Vista panorâmica da Avenida Paulista do 17º andar, gratuita.",
+        "tipo": "mirante",
+        "endereco": "Av. Paulista, 119 - Bela Vista, São Paulo - SP",
+        "latitude": -23.5610,
+        "longitude": -46.6555
+      },
+      {
+        "nome": "Jardim Botânico de São Paulo",
+        "descricao": "Jardim com vasta coleção de plantas brasileiras e estufas impressionantes.",
+        "tipo": "jardim_botanico",
+        "endereco": "Av. Miguel Stéfano, 3031 - Água Funda, São Paulo - SP",
+        "latitude": -23.6390,
+        "longitude": -46.6205
+      }
+    ],
+    "cultura": [
+      {
+        "nome": "Museu de Arte de São Paulo (MASP)",
+        "descricao": "Museu com importante acervo de arte europeia e brasileira, em icônico prédio suspenso.",
+        "tipo": "museu_arte",
+        "endereco": "Av. Paulista, 1578 - Bela Vista, São Paulo - SP",
+        "latitude": -23.5615,
+        "longitude": -46.6560
+      },
+      {
+        "nome": "Teatro Municipal de São Paulo",
+        "descricao": "Teatro histórico em estilo renascentista barroco, inaugurado em 1911.",
+        "tipo": "teatro",
+        "endereco": "Praça Ramos de Azevedo, s/n - Centro, São Paulo - SP",
+        "latitude": -23.5455,
+        "longitude": -46.6390
+      },
+      {
+        "nome": "Pinacoteca do Estado",
+        "descricao": "Museu de artes visuais mais antigo de São Paulo, com acervo de arte brasileira.",
+        "tipo": "museu",
+        "endereco": "Praça da Luz, 2 - Luz, São Paulo - SP",
+        "latitude": -23.5345,
+        "longitude": -46.6340
+      }
+    ],
+    "festas": [
+      {
+        "nome": "Bar Brahma",
+        "descricao": "Bar histórico da Praça da República com música ao vivo e ambiente tradicional.",
+        "tipo": "bar",
+        "endereco": "Av. São João, 677 - Centro, São Paulo - SP",
+        "latitude": -23.5450,
+        "longitude": -46.6410
+      },
+      {
+        "nome": "Villa Country",
+        "descricao": "Casa de shows especializada em música sertaneja, uma das maiores da América Latina.",
+        "tipo": "casa_de_shows",
+        "endereco": "Av. Francisco Matarazzo, 774 - Água Branca, São Paulo - SP",
+        "latitude": -23.5270,
+        "longitude": -46.6755
+      },
+      {
+        "nome": "D-Edge",
+        "descricao": "Uma das mais famosas casas de música eletrônica de São Paulo, com iluminação futurista.",
+        "tipo": "boate",
+        "endereco": "Av. Auro Soares de Moura Andrade, 141 - Barra Funda, São Paulo - SP",
+        "latitude": -23.5205,
+        "longitude": -46.6670
+      }
+    ]
+  },
+  "sorocaba": {
+    "gastronomia": [
+      {
+        "nome": "Restaurante Bella Paulista Sorocaba",
+        "descricao": "Restaurante com vista panorâmica da cidade e buffet diversificado.",
+        "tipo": "restaurante",
+        "endereco": "Av. Itavuvu, 3777 - Jardim Santa Rosália, Sorocaba - SP",
+        "latitude": -23.5285,
+        "longitude": -47.4420
+      },
+      {
+        "nome": "Churrascaria e Pizzaria Recanto Gaúcho",
+        "descricao": "Rodízio de carnes e pizzas em ambiente rústico e familiar.",
+        "tipo": "churrascaria",
+        "endereco": "Av. General Carneiro, 1245 - Centro, Sorocaba - SP",
+        "latitude": -23.5055,
+        "longitude": -47.4580
+      },
+      {
+        "nome": "Cafeteria do Parque",
+        "descricao": "Cafeteria charmosa às margens do Parque Natural Chico Mendes.",
+        "tipo": "cafeteria",
+        "endereco": "R. da Penha, 1000 - Centro, Sorocaba - SP",
+        "latitude": -23.5080,
+        "longitude": -47.4555
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Palacete Scarpa",
+        "descricao": "Mansão histórica do século XIX que abriga o Museu da Imagem e do Som.",
+        "tipo": "museu",
+        "endereco": "R. da Penha, 88 - Centro, Sorocaba - SP",
+        "latitude": -23.5075,
+        "longitude": -47.4560
+      },
+      {
+        "nome": "Igreja Catedral de Sorocaba",
+        "descricao": "Catedral neoclássica construída no século XIX, marco religioso da cidade.",
+        "tipo": "catedral",
+        "endereco": "Praça Coronel Fernando Prestes, s/n - Centro, Sorocaba - SP",
+        "latitude": -23.5025,
+        "longitude": -47.4590
+      },
+      {
+        "nome": "Museu Histórico Sorocabano",
+        "descricao": "Museu que conta a história da cidade desde sua fundação em 1654.",
+        "tipo": "museu",
+        "endereco": "R. Teodoro Kaisel, 883 - Vila Hortência, Sorocaba - SP",
+        "latitude": -23.5150,
+        "longitude": -47.4725
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Parque Natural Chico Mendes",
+        "descricao": "Parque com lagos, pista de caminhada, ciclovia e áreas de piquenique.",
+        "tipo": "parque",
+        "endereco": "Av. Três de Março, 1025 - Alto da Boa Vista, Sorocaba - SP",
+        "latitude": -23.5210,
+        "longitude": -47.4480
+      },
+      {
+        "nome": "Jardim Botânico Irmãos Villas-Bôas",
+        "descricao": "Jardim botânico com trilhas, orquidário e coleção de plantas nativas.",
+        "tipo": "jardim_botanico",
+        "endereco": "R. Miguel Montoro Lozano, 340 - Jardim Iguatemi, Sorocaba - SP",
+        "latitude": -23.5380,
+        "longitude": -47.4205
+      },
+      {
+        "nome": "Represa de Itupararanga",
+        "descricao": "Grande represa cercada por mata atlântica, ideal para esportes náuticos.",
+        "tipo": "represa",
+        "endereco": "Estrada de Itupararanga, km 20 - Votorantim, Sorocaba - SP",
+        "latitude": -23.4800,
+        "longitude": -47.3800
+      }
+    ]
+  },
+  "campinas": {
+    "gastronomia": [
+      {
+        "nome": "Mercadão de Campinas",
+        "descricao": "Mercado municipal com barracas de produtos regionais, queijos e frios.",
+        "tipo": "mercado",
+        "endereco": "Av. Benjamin Constant, 1677 - Centro, Campinas - SP",
+        "latitude": -22.9045,
+        "longitude": -47.0620
+      },
+      {
+        "nome": "Bar e Restaurante Morro do Sabiá",
+        "descricao": "Restaurante com vista panorâmica da cidade e culinária brasileira.",
+        "tipo": "restaurante",
+        "endereco": "Av. John Boyd Dunlop, s/n - Jardim Ipaussurama, Campinas - SP",
+        "latitude": -22.8920,
+        "longitude": -47.0855
+      },
+      {
+        "nome": "Padaria Savóia",
+        "descricao": "Padaria histórica fundada em 1948, famosa pelos pães e doces.",
+        "tipo": "padaria",
+        "endereco": "R. Conceição, 219 - Centro, Campinas - SP",
+        "latitude": -22.9065,
+        "longitude": -47.0655
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Catedral Metropolitana de Campinas",
+        "descricao": "Catedral neogótica com vitrais franceses e torres de 65 metros.",
+        "tipo": "catedral",
+        "endereco": "Praça José Bonifácio, s/n - Centro, Campinas - SP",
+        "latitude": -22.9060,
+        "longitude": -47.0610
+      },
+      {
+        "nome": "Estaçao Cultura",
+        "descricao": "Antiga estação ferroviária transformada em centro cultural.",
+        "tipo": "centro_cultural",
+        "endereco": "Praça Marechal Floriano Peixoto, s/n - Centro, Campinas - SP",
+        "latitude": -22.9080,
+        "longitude": -47.0635
+      },
+      {
+        "nome": "Museu da Imagem e do Som de Campinas",
+        "descricao": "Museu que preserva a memória audiovisual da cidade.",
+        "tipo": "museu",
+        "endereco": "R. Regente Feijó, 859 - Centro, Campinas - SP",
+        "latitude": -22.9090,
+        "longitude": -47.0660
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Lagoa do Taquaral",
+        "descricao": "Parque com lago, pista de cooper, planetário e réplica da caravela Anunciação.",
+        "tipo": "parque",
+        "endereco": "Av. Dr. Heitor Penteado, 1671 - Parque Taquaral, Campinas - SP",
+        "latitude": -22.8820,
+        "longitude": -47.0510
+      },
+      {
+        "nome": "Bosque dos Jequitibás",
+        "descricao": "Área de preservação com zoológico, aquário e trilhas na mata.",
+        "tipo": "bosque",
+        "endereco": "R. Coronel Quirino, 2 - Cambuí, Campinas - SP",
+        "latitude": -22.8960,
+        "longitude": -47.0520
+      },
+      {
+        "nome": "Parque Portugal",
+        "descricao": "Parque linear às margens do Rio Atibaia com ciclovia e área de lazer.",
+        "tipo": "parque",
+        "endereco": "Av. Dr. Antônio Carlos Couto de Barros, s/n - Jardim do Lago, Campinas - SP",
+        "latitude": -22.8950,
+        "longitude": -47.0720
+      }
+    ]
+  },
+  "santos": {
+    "gastronomia": [
+      {
+        "nome": "Mercado Municipal de Santos",
+        "descricao": "Mercado com barracas de frutos do mar frescos e restaurantes típicos.",
+        "tipo": "mercado",
+        "endereco": "R. da Constituição, 135 - Centro, Santos - SP",
+        "latitude": -23.9375,
+        "longitude": -46.3290
+      },
+      {
+        "nome": "Restaurante Mar e Sol",
+        "descricao": "Restaurante à beira-mar especializado em frutos do mar.",
+        "tipo": "restaurante",
+        "endereco": "Av. Bartolomeu de Gusmão, 192 - Aparecida, Santos - SP",
+        "latitude": -23.9750,
+        "longitude": -46.3185
+      },
+      {
+        "nome": "Café do Porto",
+        "descricao": "Cafeteria histórica no Centro de Santos com doces tradicionais.",
+        "tipo": "cafeteria",
+        "endereco": "R. do Comércio, 96 - Centro, Santos - SP",
+        "latitude": -23.9380,
+        "longitude": -46.3260
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Museu do Café",
+        "descricao": "Museu instalado no edifício da Bolsa Oficial do Café, que foi o centro do comércio cafeeiro no Brasil.",
+        "tipo": "museu",
+        "endereco": "R. Quinze de Novembro, 95 - Centro, Santos - SP",
+        "latitude": -23.9385,
+        "longitude": -46.3270
+      },
+      {
+        "nome": "Monte Serrat",
+        "descricao": "Morro histórico com bondinho centenário e vista panorâmica do porto.",
+        "tipo": "mirante_historico",
+        "endereco": "Praça Correia de Melo, 33 - Monte Serrat, Santos - SP",
+        "latitude": -23.9410,
+        "longitude": -46.3235
+      },
+      {
+        "nome": "Pantheon dos Andradas",
+        "descricao": "Mausoléu que abriga os restos mortais da família Andrada, incluindo José Bonifácio.",
+        "tipo": "panteao",
+        "endereco": "Praça Barão do Rio Branco, s/n - Centro, Santos - SP",
+        "latitude": -23.9370,
+        "longitude": -46.3285
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Jardins da Orla de Santos",
+        "descricao": "Maior jardim frontal de praia do mundo, com 5,3 km de extensão.",
+        "tipo": "jardim",
+        "endereco": "Av. Presidente Wilson, s/n - Gonzaga, Santos - SP",
+        "latitude": -23.9650,
+        "longitude": -46.3270
+      },
+      {
+        "nome": "Aquário Municipal de Santos",
+        "descricao": "Aquário com tanque oceânico de 800 mil litros e diversas espécies marinhas.",
+        "tipo": "aquario",
+        "endereco": "Av. Bartolomeu de Gusmão, s/n - Ponta da Praia, Santos - SP",
+        "latitude": -23.9870,
+        "longitude": -46.3120
+      },
+      {
+        "nome": "Ilha Urubuqueçaba",
+        "descricao": "Ilha preservada na Baía de Santos, acessível por barco, com trilhas e mirantes.",
+        "tipo": "ilha",
+        "endereco": "Baía de Santos - Santos - SP",
+        "latitude": -23.9900,
+        "longitude": -46.3000
+      }
+    ]
+  },
+  "são josé dos campos": {
+    "gastronomia": [
+      {
+        "nome": "Mercado Municipal de São José dos Campos",
+        "descricao": "Mercado com produtos frescos e praça de alimentação diversificada.",
+        "tipo": "mercado",
+        "endereco": "Av. Olivo Gomes, 100 - Santana, São José dos Campos - SP",
+        "latitude": -23.1930,
+        "longitude": -45.8905
+      },
+      {
+        "nome": "Restaurante Espaço AlphaVille",
+        "descricao": "Restaurante com buffet executivo e vista para o Parque da Cidade.",
+        "tipo": "restaurante",
+        "endereco": "Av. Andrômeda, 227 - Jardim Satélite, São José dos Campos - SP",
+        "latitude": -23.2050,
+        "longitude": -45.8620
+      },
+      {
+        "nome": "Padaria Real São José",
+        "descricao": "Padaria tradicional com doces e salgados famosos na região.",
+        "tipo": "padaria",
+        "endereco": "R. Euclides Miragaia, 678 - Centro, São José dos Campos - SP",
+        "latitude": -23.1890,
+        "longitude": -45.8880
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Museu de Esportes de São José dos Campos",
+        "descricao": "Museu que conta a história esportiva da cidade, especialmente do futebol.",
+        "tipo": "museu",
+        "endereco": "Praça Afonso Pena, 29 - Centro, São José dos Campos - SP",
+        "latitude": -23.1865,
+        "longitude": -45.8875
+      },
+      {
+        "nome": "Igreja Matriz de São José",
+        "descricao": "Igreja histórica que deu origem à cidade, construída no século XVIII.",
+        "tipo": "igreja",
+        "endereco": "Praça Padre João Guilherme, 27 - Centro, São José dos Campos - SP",
+        "latitude": -23.1880,
+        "longitude": -45.8885
+      },
+      {
+        "nome": "Museu do Folclore",
+        "descricao": "Museu dedicado à cultura popular e folclore brasileiro.",
+        "tipo": "museu",
+        "endereco": "R. Dona Silvéria, 123 - Chácara dos Eucaliptos, São José dos Campos - SP",
+        "latitude": -23.1970,
+        "longitude": -45.8780
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Parque da Cidade",
+        "descricao": "Parque urbano com lago, pista de caminhada, ciclovia e área de eventos.",
+        "tipo": "parque",
+        "endereco": "Av. Olivo Gomes, 100 - Santana, São José dos Campos - SP",
+        "latitude": -23.1935,
+        "longitude": -45.8910
+      },
+      {
+        "nome": "Parque Vicentina Aranha",
+        "descricao": "Parque histórico com área verde, pista de caminhada e eventos culturais.",
+        "tipo": "parque",
+        "endereco": "R. Eng. Prudente Meireles de Moraes, 302 - Vila Adyana, São José dos Campos - SP",
+        "latitude": -23.1990,
+        "longitude": -45.8795
+      },
+      {
+        "nome": "Mirante do Banhado",
+        "descricao": "Mirante com vista para a várzea do Rio Paraíba do Sul.",
+        "tipo": "mirante",
+        "endereco": "Av. São João, s/n - Jardim São Dimas, São José dos Campos - SP",
+        "latitude": -23.1750,
+        "longitude": -45.9050
+      }
+    ]
+  },
+  "ribeirão preto": {
+    "gastronomia": [
+      {
+        "nome": "Mercado Municipal de Ribeirão Preto",
+        "descricao": "Mercado com barracas de produtos regionais e praça de alimentação.",
+        "tipo": "mercado",
+        "endereco": "Av. Independência, 1122 - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1780,
+        "longitude": -47.8105
+      },
+      {
+        "nome": "Churrascaria Boca Negra",
+        "descricao": "Rodízio de carnes premium em ambiente sofisticado.",
+        "tipo": "churrascaria",
+        "endereco": "R. General Osório, 1940 - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1750,
+        "longitude": -47.8140
+      },
+      {
+        "nome": "Padaria São Paulo",
+        "descricao": "Padaria histórica famosa pelo pão francês e doces tradicionais.",
+        "tipo": "padaria",
+        "endereco": "R. General Osório, 1250 - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1790,
+        "longitude": -47.8120
+      }
+    ],
+    "historia": [
+      {
+        "nome": "Theatro Pedro II",
+        "descricao": "Teatro histórico em estilo art déco, inaugurado em 1930.",
+        "tipo": "teatro",
+        "endereco": "R. Álvares Cabral, 370 - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1775,
+        "longitude": -47.8080
+      },
+      {
+        "nome": "Museu do Café Francisco Schmidt",
+        "descricao": "Museu que conta a história do ciclo do café na região.",
+        "tipo": "museu",
+        "endereco": "R. Saldanha Marinho, 381 - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1810,
+        "longitude": -47.8090
+      },
+      {
+        "nome": "Catedral Metropolitana de Ribeirão Preto",
+        "descricao": "Catedral neogótica com vitrais coloridos e torres imponentes.",
+        "tipo": "catedral",
+        "endereco": "Praça das Bandeiras, s/n - Centro, Ribeirão Preto - SP",
+        "latitude": -21.1765,
+        "longitude": -47.8110
+      }
+    ],
+    "paisagens": [
+      {
+        "nome": "Parque Curupira",
+        "descricao": "Parque com lago, pista de caminhada, playground e área de piquenique.",
+        "tipo": "parque",
+        "endereco": "R. José Grosso, 211 - Jardim Recreio, Ribeirão Preto - SP",
+        "latitude": -21.1910,
+        "longitude": -47.7830
+      },
+      {
+        "nome": "Bosque Zoo Fábio Barreto",
+        "descricao": "Zoológico municipal com trilhas na mata e diversas espécies animais.",
+        "tipo": "zoo",
+        "endereco": "R. Liberdade, 100 - Jardim Recreio, Ribeirão Preto - SP",
+        "latitude": -21.1890,
+        "longitude": -47.7850
+      },
+      {
+        "nome": "Jardim Japonês",
+        "descricao": "Jardim em estilo japonês com ponte, lago com carpas e cerejeiras.",
+        "tipo": "jardim_japones",
+        "endereco": "Av. Maurílio Biagi, s/n - City Ribeirão, Ribeirão Preto - SP",
+        "latitude": -21.2000,
+        "longitude": -47.7700
+      }
+    ]
+  }
+}

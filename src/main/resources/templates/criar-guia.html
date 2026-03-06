@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Guia Personalizado - MeuGuia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/criarGuia.css}">
+</head>
+<body th:classappend="${userTheme == 'dark'} ? 'dark-mode'">
+    <div class="desktop-container">
+        <header class="header">
+            <div class="logo" onclick="window.location.href='/inicial'">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>MeuGuia</span>
+            </div>
+            
+            <div class="header-title">
+                <h1>Criar Guia Personalizado</h1>
+            </div>
+            
+            <div class="user-actions">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="user-info" id="user-info">
+                    <!-- NOVO: Avatar com foto -->
+                    <div class="user-avatar-small">
+                        <img th:if="${usuario.fotoPerfil}" 
+                             th:src="@{'/uploads/' + ${usuario.fotoPerfil}}" 
+                             alt="Foto de perfil" 
+                             class="avatar-image-small">
+                        <i th:unless="${usuario.fotoPerfil}" class="fas fa-user-circle user-icon"></i>
+                    </div>
+                    <span class="user-name" id="user-name" th:text="${primeiroNome}">Usuário</span>
+                    <div class="user-menu" id="user-menu">
+                        <a href="/menu?section=configuracoes" class="user-menu-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Configurações</span>
+                        </a>
+                        <a href="/menu?section=informacoes" class="user-menu-item">
+                            <i class="fas fa-user"></i>
+                            <span>Perfil</span>
+                        </a>
+                        <a href="/logout" class="user-menu-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sair</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="creation-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Destino</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Temática</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Atividades</span>
+                </div>
+                <div class="step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Personalizar</span>
+                </div>
+            </div>
+            
+            <!-- Passo 1: Escolher Destino -->
+            <div class="creation-step active" id="step-1">
+                <h2>Para onde você quer ir?</h2>
+                <p>Escolha o destino do seu guia personalizado</p>
+                
+                <div class="destination-search">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Pesquisar destino..." id="destinationSearch">
+                    </div>
+                </div>
+                
+                <div class="popular-destinations">
+                    <h3>Destinos Populares</h3>
+                    <div class="destinations-grid">
+                        <div class="destination-card" data-destination="São Paulo, SP">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1543059080-f9b1272213d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                            <div class="destination-info">
+                                <h4>São Paulo</h4>
+                                <p>Capital cultural e financeira</p>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card" data-destination="Rio de Janeiro, RJ">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                            <div class="destination-info">
+                                <h4>Rio de Janeiro</h4>
+                                <p>Cidade maravilhosa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card" data-destination="Florianópolis, SC">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                            <div class="destination-info">
+                                <h4>Florianópolis</h4>
+                                <p>Ilha da magia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="destination-card" data-destination="Salvador, BA">
+                            <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1540660290370-8aa90e451e8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                            <div class="destination-info">
+                                <h4>Salvador</h4>
+                                <p>Capital cultural da Bahia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-actions">
+                    <button class="btn-next" onclick="nextStep(2)">Próximo <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Passo 2: Escolher Temática -->
+            <div class="creation-step" id="step-2">
+                <h2>Qual a temática do seu guia?</h2>
+                <p>Selecione o estilo de viagem que mais combina com você</p>
+                
+                <div class="themes-grid">
+                    <div class="theme-card" data-theme="aventura">
+                        <div class="theme-icon">
+                            <i class="fas fa-hiking"></i>
+                        </div>
+                        <h4>Aventura</h4>
+                        <p>Trilhas, esportes radicais e natureza</p>
+                    </div>
+                    
+                    <div class="theme-card" data-theme="cultural">
+                        <div class="theme-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h4>Cultural</h4>
+                        <p>Museus, história e arquitetura</p>
+                    </div>
+                    
+                    <div class="theme-card" data-theme="gastronomico">
+                        <div class="theme-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h4>Gastronômico</h4>
+                        <p>Restaurantes, bares e comidas típicas</p>
+                    </div>
+                    
+                    <div class="theme-card" data-theme="romantico">
+                        <div class="theme-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Romântico</h4>
+                        <p>Passeios a dois e jantares especiais</p>
+                    </div>
+                    
+                    <div class="theme-card" data-theme="familia">
+                        <div class="theme-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Família</h4>
+                        <p>Atividades para todas as idades</p>
+                    </div>
+                    
+                    <div class="theme-card" data-theme="relaxamento">
+                        <div class="theme-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h4>Relaxamento</h4>
+                        <p>SPAs, praias e tranquilidade</p>
+                    </div>
+                </div>
+                
+                <div class="step-actions">
+                    <button class="btn-prev" onclick="prevStep(1)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button class="btn-next" onclick="nextStep(3)">Próximo <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Passo 3: Selecionar Atividades -->
+            <div class="creation-step" id="step-3">
+                <h2>Selecione as atividades</h2>
+                <p>Escolha as atividades que deseja incluir no seu guia</p>
+                
+                <div class="activities-filter">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="culture">Cultura</button>
+                    <button class="filter-btn" data-filter="nature">Natureza</button>
+                    <button class="filter-btn" data-filter="food">Gastronomia</button>
+                    <button class="filter-btn" data-filter="entertainment">Entretenimento</button>
+                </div>
+                
+                <div class="activities-list">
+                    <div class="activity-item" data-category="culture">
+                        <div class="activity-select">
+                            <input type="checkbox" id="activity-1">
+                            <label for="activity-1"></label>
+                        </div>
+                        <div class="activity-info">
+                            <h4>Visita ao Museu de Arte</h4>
+                            <p>Exposições de arte moderna e contemporânea</p>
+                            <span class="activity-duration"><i class="fas fa-clock"></i> 2-3 horas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item" data-category="nature">
+                        <div class="activity-select">
+                            <input type="checkbox" id="activity-2">
+                            <label for="activity-2"></label>
+                        </div>
+                        <div class="activity-info">
+                            <h4>Trilha na Montanha</h4>
+                            <p>Caminhada ecológica com vista panorâmica</p>
+                            <span class="activity-duration"><i class="fas fa-clock"></i> 4-5 horas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item" data-category="food">
+                        <div class="activity-select">
+                            <input type="checkbox" id="activity-3">
+                            <label for="activity-3"></label>
+                        </div>
+                        <div class="activity-info">
+                            <h4>Tour Gastronômico</h4>
+                            <p>Degustação de pratos típicos da região</p>
+                            <span class="activity-duration"><i class="fas fa-clock"></i> 3-4 horas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item" data-category="entertainment">
+                        <div class="activity-select">
+                            <input type="checkbox" id="activity-4">
+                            <label for="activity-4"></label>
+                        </div>
+                        <div class="activity-info">
+                            <h4>Show Local</h4>
+                            <p>Apresentação de música tradicional</p>
+                            <span class="activity-duration"><i class="fas fa-clock"></i> 2 horas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item" data-category="culture">
+                        <div class="activity-select">
+                            <input type="checkbox" id="activity-5">
+                            <label for="activity-5"></label>
+                        </div>
+                        <div class="activity-info">
+                            <h4>Centro Histórico</h4>
+                            <p>Passeio pela arquitetura colonial</p>
+                            <span class="activity-duration"><i class="fas fa-clock"></i> 2-3 horas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-actions">
+                    <button class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button class="btn-next" onclick="nextStep(4)">Próximo <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Passo 4: Personalização Final -->
+            <div class="creation-step" id="step-4">
+                <h2>Personalize seu guia</h2>
+                <p>Adicione os últimos detalhes ao seu guia personalizado</p>
+                
+                <div class="customization-form">
+                    <div class="form-group">
+                        <label for="guide-name">Nome do seu guia</label>
+                        <input type="text" id="guide-name" placeholder="Ex: Melhores de São Paulo - Junho 2023">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guide-duration">Duração da viagem</label>
+                        <select id="guide-duration">
+                            <option value="">Selecione a duração</option>
+                            <option value="1">1 dia</option>
+                            <option value="2">2 dias</option>
+                            <option value="3">3 dias</option>
+                            <option value="5">5 dias</option>
+                            <option value="7">1 semana</option>
+                            <option value="10">10 dias</option>
+                            <option value="14">2 semanas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guide-budget">Orçamento aproximado</label>
+                        <select id="guide-budget">
+                            <option value="">Selecione o orçamento</option>
+                            <option value="economy">Econômico (até R$ 100/dia)</option>
+                            <option value="moderate">Moderado (R$ 100-300/dia)</option>
+                            <option value="comfort">Conforto (R$ 300-500/dia)</option>
+                            <option value="luxury">Luxo (acima de R$ 500/dia)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guide-notes">Observações especiais</label>
+                        <textarea id="guide-notes" placeholder="Alguma necessidade específica? Restrições alimentares? Preferências?"></textarea>
+                    </div>
+                </div>
+                
+                <div class="preview-section">
+                    <h3>Prévia do seu guia</h3>
+                    <div class="guide-preview">
+                        <div class="preview-header">
+                            <h4 id="preview-name">Nome do Guia</h4>
+                            <p id="preview-destination">Destino: <span>A definir</span></p>
+                        </div>
+                        <div class="preview-theme">
+                            <p>Temática: <span id="preview-theme">A definir</span></p>
+                        </div>
+                        <div class="preview-activities">
+                            <h5>Atividades selecionadas:</h5>
+                            <ul id="preview-activities-list">
+                                <li>Nenhuma atividade selecionada ainda</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-actions">
+                    <button class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <button class="btn-create" onclick="createGuide()"><i class="fas fa-plus-circle"></i> Criar Guia</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Menu do usuário (mesma lógica da interface inicial)
+        document.addEventListener('DOMContentLoaded', function() {
+            const userInfo = document.getElementById('user-info');
+            const userMenu = document.getElementById('user-menu');
+            
+            // Alternar menu do usuário
+            userInfo.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userMenu.classList.toggle('active');
+            });
+            
+            // Fechar menu ao clicar fora
+            document.addEventListener('click', function() {
+                userMenu.classList.remove('active');
+            });
+            
+            // Prevenir que o clique no menu feche-o
+            userMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Navegação entre os passos
+            function nextStep(step) {
+                document.querySelectorAll('.creation-step').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+                
+                document.getElementById(`step-${step}`).classList.add('active');
+                document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+                
+                window.scrollTo(0, 0);
+            }
+            
+            function prevStep(step) {
+                document.querySelectorAll('.creation-step').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+                
+                document.getElementById(`step-${step}`).classList.add('active');
+                document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+                
+                window.scrollTo(0, 0);
+            }
+            
+            // Seleção de destino
+            document.querySelectorAll('.destination-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.destination-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // Aqui você pode salvar a seleção
+                });
+            });
+            
+            // Seleção de tema
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // Aqui você pode salvar a seleção
+                });
+            });
+            
+            // Filtro de atividades
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    document.querySelectorAll('.activity-item').forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Atualizar preview
+            function updatePreview() {
+                // Esta função seria preenchida com a lógica para atualizar a prévia
+                // baseada nas seleções do usuário
+            }
+            
+            // Criar guia
+            function createGuide() {
+                // Coletar dados do formulário
+                const nomeGuia = document.getElementById('guide-name').value;
+                const destino = document.querySelector('.destination-card.selected')?.getAttribute('data-destination') || '';
+                const tematica = document.querySelector('.theme-card.selected')?.getAttribute('data-theme') || '';
+                const duracao = document.getElementById('guide-duration').value;
+                const orcamento = document.getElementById('guide-budget').value;
+                const observacoes = document.getElementById('guide-notes').value;
+                
+                // Coletar atividades selecionadas
+                const atividadesSelecionadas = [];
+                document.querySelectorAll('.activity-select input[type="checkbox"]:checked').forEach(checkbox => {
+                    atividadesSelecionadas.push(checkbox.id.replace('activity-', ''));
+                });
+                
+                // Validar dados obrigatórios
+                if (!nomeGuia || !destino || !tematica || !duracao || !orcamento) {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                    return;
+                }
+                
+                // Criar formulário para envio
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/criar-guia';
+                
+                // Adicionar campos ao formulário
+                function addField(name, value) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                }
+                
+                addField('nomeGuia', nomeGuia);
+                addField('destino', destino);
+                addField('tematica', tematica);
+                addField('duracao', duracao);
+                addField('orcamento', orcamento);
+                addField('observacoes', observacoes);
+                
+                // Adicionar atividades
+                atividadesSelecionadas.forEach((atividade, index) => {
+                    addField('atividades', atividade);
+                });
+                
+                // Enviar formulário
+                document.body.appendChild(form);
+                form.submit();
+            }
+            
+            // Expor funções para o escopo global
+            window.nextStep = nextStep;
+            window.prevStep = prevStep;
+            window.createGuide = createGuide;
+        });
+    </script>
+</body>
+</html>

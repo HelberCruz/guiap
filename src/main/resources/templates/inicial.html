@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="appName">MeuGuia - Roteiros Personalizados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/inicial.css}">
+</head>
+
+<body th:classappend="${userTheme == 'dark'} ? 'dark-mode'">
+    <div class="desktop-container">
+        <header class="header">
+            <div class="logo" onclick="window.location.href='/inicial'">
+                <i class="fas fa-map-marked-alt"></i>
+                <span data-i18n="appName">MeuGuia</span>
+            </div>
+            <div class="user-actions">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="user-info" id="user-info">
+                    <div class="user-avatar-small">
+                        <img th:if="${usuario.fotoPerfil}" th:src="@{'/uploads/' + ${usuario.fotoPerfil}}"
+                            alt="Foto de perfil" class="avatar-image-small">
+                        <i th:unless="${usuario.fotoPerfil}" class="fas fa-user-circle user-icon"></i>
+                    </div>
+                    <span class="user-name" id="user-name" th:text="${primeiroNome}">Usuário</span>
+                    <div class="user-menu" id="user-menu">
+                        <a href="/menu?section=duvidas" class="user-menu-item">
+                            <i class="fas fa-cog"></i>
+                            <span data-i18n="settings">Configurações</span>
+                        </a>
+                        <a href="/menu?section=informacoes" class="user-menu-item">
+                            <i class="fas fa-user"></i>
+                            <span data-i18n="profile">Perfil</span>
+                        </a>
+                        <a href="/logout" class="user-menu-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span data-i18n="logout">Sair</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="selection-container">
+                <div class="intro-section">
+                    <h1 data-i18n="createItinerary">Crie seu roteiro personalizado</h1>
+                    <p data-i18n="itineraryDescription">Informe a localização e selecione um tema para gerar um roteiro
+                        único</p>
+                </div>
+
+                <div class="location-section">
+                    <div class="location-input">
+                        <input type="text" id="user-location" data-i18n-placeholder="enterLocation"
+                            placeholder="Digite seu endereço de partida">
+                        <button id="detect-location" class="btn-location">
+                            <i class="fas fa-location-arrow"></i>
+                            <span data-i18n="useMyLocation">Usar minha localização</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="themes-section">
+                    <h2 data-i18n="chooseTheme">Escolha o tema do seu roteiro</h2>
+                    <p data-i18n="themeDescription">Selecione uma categoria para explorar destinos incríveis</p>
+
+                    <div class="cards-grid">
+                        <div class="card festas" data-theme="festas">
+                            <div class="card-image"></div>
+                            <div class="card-content">
+                                <h3 data-i18n="parties">Festas</h3>
+                                <p data-i18n="partiesDesc">Descubra os melhores eventos e festivais</p>
+                            </div>
+                        </div>
+
+                        <div class="card gastronomia" data-theme="gastronomia">
+                            <div class="card-image"></div>
+                            <div class="card-content">
+                                <h3 data-i18n="gastronomy">Gastronomia</h3>
+                                <p data-i18n="gastronomyDesc">Explore a culinária local e restaurantes</p>
+                            </div>
+                        </div>
+
+                        <div class="card historia" data-theme="historia">
+                            <div class="card-image"></div>
+                            <div class="card-content">
+                                <h3 data-i18n="history">História</h3>
+                                <p data-i18n="historyDesc">Conheça a rica história e patrimônios</p>
+                            </div>
+                        </div>
+
+                        <div class="card paisagens" data-theme="paisagens">
+                            <div class="card-image"></div>
+                            <div class="card-content">
+                                <h3 data-i18n="landscapes">Paisagens</h3>
+                                <p data-i18n="landscapesDesc">Descubra as mais belas paisagens naturais</p>
+                            </div>
+                        </div>
+
+                        <div class="card cultura" data-theme="cultura">
+                            <div class="card-image"></div>
+                            <div class="card-content">
+                                <h3 data-i18n="culture">Cultura</h3>
+                                <p data-i18n="cultureDesc">Vivencie as tradições e expressões culturais</p>
+                            </div>
+                        </div>
+
+                        <div class="card manual" data-theme="manual" onclick="window.location.href='/criar-guia'">
+                            <div class="card-content">
+                                <div class="manual-icon">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <h3 data-i18n="manualGuide">Criar Guia Manualmente</h3>
+                                <p data-i18n="manualGuideDesc">Personalize seu próprio roteiro de viagem</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="generate-section">
+                <button id="generate-itinerary" class="btn-generate" disabled>
+                    <i class="fas fa-magic"></i>
+                    <span data-i18n="generateItinerary">Gerar Meu Roteiro</span>
+                </button>
+            </div>
+        </main>
+
+        <div class="user-footer">
+            <div class="user-avatar-footer">
+                <img th:if="${usuario.fotoPerfil}" th:src="@{'/uploads/' + ${usuario.fotoPerfil}}" alt="Foto de perfil"
+                    class="avatar-image-footer">
+                <i th:unless="${usuario.fotoPerfil}" class="fas fa-user-circle user-footer-icon"></i>
+            </div>
+            <span class="user-footer-name" id="user-footer-name" th:text="${primeiroNome}">Usuário</span>
+        </div>
+
+        <footer class="footer">
+            <p data-i18n="copyright">&copy; 2025 MeuGuia - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <div id="loading-modal" class="modal">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <p data-i18n="generatingItinerary">Gerando seu roteiro personalizado...</p>
+            <p style="font-size: 14px; margin-top: 10px; color: #7f8c8d;" data-i18n="pleaseWait">Isso pode levar alguns
+                segundos</p>
+        </div>
+    </div>
+
+    <script th:src="@{/js/shared/translations.js}"></script>
+    <script th:src="@{/js/shared/languageManager.js}"></script>
+    <script th:src="@{/js/shared/utils.js}"></script>
+    <script th:src="@{/js/shared/modal.js}"></script>
+    <!-- Módulos específicos da página inicial -->
+    <script th:src="@{/js/inicial/locationService.js}"></script>
+    <script th:src="@{/js/inicial/themeManager.js}"></script>
+    <script th:src="@{/js/inicial/itineraryGenerator.js}"></script>
+    <!-- MAIN.JS DEVE SER O ÚLTIMO -->
+    <script th:src="@{/js/inicial/main.js}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Menu do usuário
+            const userInfo = document.getElementById('user-info');
+            const userMenu = document.getElementById('user-menu');
+
+            userInfo.addEventListener('click', function (e) {
+                e.stopPropagation();
+                userMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function () {
+                userMenu.classList.remove('active');
+            });
+
+            userMenu.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+
+            // Botão gerar roteiro com tradução
+            const generateButton = document.getElementById('generate-itinerary');
+            if (generateButton) {
+                generateButton.addEventListener('click', function () {
+                    const selectedTheme = document.querySelector('.card.selected');
+                    if (!selectedTheme) {
+                        alert(languageManager.getTranslation('selectTheme'));
+                        return;
+                    }
+
+                    const locationInput = document.getElementById('user-location');
+                    if (!locationInput.value.trim()) {
+                        alert(languageManager.getTranslation('enterLocationAlert'));
+                        return;
+                    }
+
+                    const theme = selectedTheme.getAttribute('data-theme');
+                    const location = locationInput.value.trim();
+
+                    window.location.href = `/roteiro?tema=${theme}&localizacao=${encodeURIComponent(location)}`;
+                });
+            }
+
+            // Inicializar outros módulos
+            if (typeof initializeLocationService === 'function') {
+                initializeLocationService();
+            }
+
+            if (typeof initializeThemeManager === 'function') {
+                initializeThemeManager();
+            }
+
+            if (typeof initializeItineraryGenerator === 'function') {
+                initializeItineraryGenerator();
+            }
+        });
+    </script>
+</body>
+
+</html>
